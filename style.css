@@ -1,0 +1,379 @@
+/* Resetando estilos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: white;
+    position: relative;  /* necessário para o ::before funcionar */
+    z-index: 0;           /* mantém o conteúdo acima da imagem de fundo */
+}
+
+/* Fundo com imagem escurecida e borrada */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('imagens/fundo.jpg') no-repeat center center/cover;
+    filter: brightness(0.2) blur(3px);
+    z-index: -1;
+}
+
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #0b0b0b;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Logo do Techflix */
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #10a126;
+}
+
+/* Menu do cabeçalho */
+.menu ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Seção do banner */
+.banner {
+    height: 100vh;
+    background: url('https://via.placeholder.com/1920x1080?text=Techflix+Banner') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.banner-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.banner h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.banner button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #10a126;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.banner button:hover {
+    background-color: #10a126;
+}
+
+/* Seção de conteúdo */
+.content {
+    padding: 60px 20px 20px 20px;
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+.movies {
+    display: flex;
+    flex-wrap: wrap;          /* permite que os cards quebrem linha */
+    gap: 15px;
+    overflow: hidden;         /* impede qualquer barra de rolagem interna */
+    padding: 20px;            /* opcional: só pra dar espaço interno bonito */
+}
+
+.movie-item {
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.movie-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: 0.3s ease-in-out;
+}
+
+
+.movie-item:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do card de maneira mais visível */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Aumenta a sombra ao redor do card */
+    background-color: #a7a7a7; /* Altera a cor de fundo para vermelho mais vibrante */
+}
+
+.movie-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    border-radius: 0 0 10px 10px;
+}
+
+.movie-item:hover img {
+    filter: brightness(60%);
+}
+
+.movie-item:hover .overlay {
+    opacity: 1;
+}
+
+.movie-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background-color: #0e0e0e;
+  color: white;
+  padding: 30px 20px 20px 20px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.8);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1500;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+
+.movie-panel.open {
+  transform: translateX(0);
+}
+
+/* Botão de fechar */
+#close-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #111;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.movie-panel img#movie-image {
+  position: static;      /* remove absolute */
+  width: 120px;          /* aumentei um pouco */
+  height: 120px;         /* mantive quadrado */
+  object-fit: cover;
+  border-radius: 12px;   /* bordas arredondadas */
+  box-shadow: 0 0 8px rgba(0,0,0,0.6);
+  margin: 20px auto 25px auto; /* centraliza com margin automática lateral e espaçamento */
+  display: block;        /* para garantir centralização */
+}
+
+
+
+
+
+#movie-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 30px; /* empurra o título pra baixo, para não ficar muito perto da imagem */
+  margin-bottom: 12px;
+  color: #10a126;
+}
+
+#movie-description {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #ddd;
+  margin-top: 10px;
+}
+
+/* Animações */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Estilo do modal */
+/* Modal escurecendo o fundo */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Ocultar com classe .hidden */
+.hidden {
+  display: none;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background: #100f0f;
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 50vw;              /* Quase a largura total da tela */
+  height: 50vh;             /* Quase toda a altura da tela */
+  text-align: left;
+  position: relative;
+  animation: scaleIn 0.3s ease-in-out;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;         /* Ativa rolagem se o conteúdo for muito longo */
+}
+
+
+/* Botão de fechar */
+.modal .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal .close:hover {
+  color: #000;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Classe para animação de saída */
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+/* Animação fadeOut no fundo */
+@keyframes fadeOut {
+  from {
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+  }
+  to {
+    background-color: rgba(11, 192, 20, 0);
+    opacity: 0;
+  }
+}
+
+
+.modal-content.fade-out-content {
+  animation: scaleOut 0.3s ease-in-out forwards;
+}
+
+/* Animação de saída do conteúdo */
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+
+
+
+
