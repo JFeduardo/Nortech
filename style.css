@@ -25,6 +25,7 @@ body::before {
     background: url('Fotos/imagem\ de\ fundo.jpeg.png') no-repeat center center/cover;
     filter: brightness(0.2) blur(3px);
     z-index: -1;
+    
 }
 
 
@@ -34,7 +35,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #0b0b0b;
+    background-color: #0b0b0b00;
     position: fixed;
     top: 0;
     width: 100%;
