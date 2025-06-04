@@ -36,12 +36,11 @@ header {
     align-items: center;
     padding: 20px;
     background-color: #0b0b0b00;
-    position: fixed;
+;
     top: 0;
     width: 100%;
     z-index: 1000;
 }
-
 /* Logo do Techflix */
 .logo {
     font-size: 30px;
@@ -67,7 +66,7 @@ header {
 
 /* Seção do banner */
 .banner {
-    height: 100vh;
+    height: 45vh;
     background: url('https://via.placeholder.com/1920x1080?text=Techflix+Banner') no-repeat center center/cover;
     display: flex;
     justify-content: center;
@@ -120,7 +119,7 @@ header {
     flex-wrap: wrap;          /* permite que os cards quebrem linha */
     gap: 15px;
     overflow: hidden;         /* impede qualquer barra de rolagem interna */
-    padding: 20px;            /* opcional: só pra dar espaço interno bonito */
+    padding:20px;            /* opcional: só pra dar espaço interno bonito */
 }
 
 .movie-item {
